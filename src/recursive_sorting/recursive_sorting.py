@@ -21,17 +21,22 @@ def merge(arrA, arrB):
     return merged_arr
 
 
-print(merge([1, 3, 5], [2, 4, 6, 7]))
-
-
 # TO-DO: implement the Merge Sort function below USING RECURSION
 def merge_sort(arr):
-    # TO-DO
-    # if len(arr)>1:
-    #     #split arr, pass recursively
+    # find pivot (half-way point)
+    pivot = int(len(arr)/2)
 
-    # else:
+    if len(arr) > 2:
+        # split arr, pass recursively until both halves have come back and are sorted (in elif statement)
+        lhs = merge_sort(arr[:pivot])
+        rhs = merge_sort(arr[pivot:])
+        # then merge both sorted halves
+        arr = merge(lhs, rhs)
+    elif len(arr) == 2:
+        # if only two items, just pass in to merge so they get sorted properly
+        arr = merge(arr[:pivot], arr[pivot:])
 
+    # if arr of only ONE item is passed here, it just gets returned
     return arr
 
 
