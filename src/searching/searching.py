@@ -30,4 +30,12 @@ def binary_search_recursive(arr, target, low, high):
 
     if len(arr) == 0:
         return -1  # array empty
-    # TO-DO: add missing if/else statements, recursive calls
+    elif arr[middle] == target:
+                # middle is target: success!
+        return middle
+    elif arr[middle] > target:
+                # target is to the left
+        return binary_search_recursive(arr[:middle], target, low, middle)
+    else:
+                # target is to the right
+        return binary_search_recursive(arr[middle:], target, middle, high)
