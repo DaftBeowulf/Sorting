@@ -1,30 +1,37 @@
 # TO-DO: complete the helper function below to merge 2 sorted arrays
 def merge(arrA, arrB):
-    elements = len(arrA) + len(arrB)
     merged_arr = []
     # TO-DO
-    i = 0
-    j = 0
+    # i = 0
+    # j = 0
 
-    while arrA[i:] and arrB[j:]:
-        if arrA[i] < arrB[j]:
-            merged_arr.append(arrA[i])
-            i += 1
+    # original version
+    # while arrA[i:] and arrB[j:]:
+    #     if arrA[i] < arrB[j]:
+    #         merged_arr.append(arrA[i])
+    #         i += 1
+    #     else:
+    #         merged_arr.append(arrB[j])
+    #         j += 1
+    # return merged_arr + arrA + arrB
+
+    # concise version without counters
+    # BUT arr.pop() is O(k), so leads to longer runtime
+    while len(arrA) and len(arrB):
+        if arrA[0] < arrB[0]:
+            merged_arr.append(arrA[0])
+            arrA.pop(0)
         else:
-            merged_arr.append(arrB[j])
-            j += 1
-    if not arrA[i:]:
-        merged_arr.extend(arrB[j:])
-    else:
-        merged_arr.extend(arrA[i:])
+            merged_arr.append(arrB[0])
+            arrB.pop(0)
 
-    return merged_arr
+    return merged_arr+arrA+arrB
 
 
 # TO-DO: implement the Merge Sort function below USING RECURSION
 def merge_sort(arr):
     # find pivot (half-way point)
-    pivot = int(len(arr)/2)
+    pivot = len(arr)//2
 
     if len(arr) > 2:
         # split arr, pass recursively until both halves have come back and are sorted (in elif statement)
